@@ -1,9 +1,6 @@
 package misterx.diamondgen;
 
-import kaptainwutax.biomeutils.Biome;
-import kaptainwutax.biomeutils.source.NetherBiomeSource;
-import kaptainwutax.seedutils.mc.MCVersion;
-import kaptainwutax.seedutils.mc.seed.ChunkSeeds;
+
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
@@ -33,9 +30,9 @@ public class StartGen {
         } else {
             step = 4;
         }
-        long decSeed = ChunkSeeds.getDecoratorSeed(this.currentSeed, BlockX, BlockZ, 9, step, MCVersion.v1_14_4);
+       // long decSeed = ChunkSeeds.getDecoratorSeed(this.currentSeed, BlockX, BlockZ, 9, step, MCVersion.v1_14_4);
         Random random = new Random();
-        random.setSeed(decSeed);
+        random.setSeed(this.currentSeed);
         int x = random.nextInt(16)+BlockX;
         int z = random.nextInt(16)+BlockZ;
         int y = random.nextInt(16);
