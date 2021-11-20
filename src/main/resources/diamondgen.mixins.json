@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.fabricmc.example.mixin",
+  "compatibilityLevel": "JAVA_16",
+    "mixins": [
+  ],
+  "client": [
+    "ClientPlayerEntityMixin",
+    "ClientPlayNetworkHandlerMixin",
+    "ClientWorldMixin",
+    "DimensionTypeMixin",
+    "DummyProfilerMixin",
+    "GameRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
