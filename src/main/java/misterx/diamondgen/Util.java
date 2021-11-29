@@ -27,7 +27,7 @@ public class Util {
         int playerChunkZ = (int) (Math.round(client.player.getZ()) >> 4);
         for(int i = playerChunkX - renderdistance;i < playerChunkX + renderdistance; i++) {
             for(int j = playerChunkZ - renderdistance;j < playerChunkZ + renderdistance; j++) {
-                DiamondGen.gen.getStartingPos(i << 4,j<<4);
+               // DiamondGen.gen.getStartingPos(i << 4,j<<4);
             }
         }
     }
