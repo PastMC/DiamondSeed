@@ -15,20 +15,11 @@ import net.minecraft.util.math.Vec3d;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 
 public class Renderer {
 
-    
 
-
-    protected Vec3d toVec3d(BlockPos pos) {
-        return new Vec3d(pos.getX(), pos.getY(), pos.getZ());
-    }
-
-public static void renderOutlineInternNoTranslate(Vec3d start, Vec3d dimensions, MatrixStack stack, BufferBuilder buffer) {
+    public static void renderOutlineInternNoTranslate(Vec3d start, Vec3d dimensions, MatrixStack stack, BufferBuilder buffer) {
         Vec3d end = start.add(dimensions);
         Matrix4f matrix = stack.peek().getModel();
         float x1 = (float) start.x;
@@ -70,7 +61,7 @@ public static void renderOutlineInternNoTranslate(Vec3d start, Vec3d dimensions,
     }
 
     public static void renderOutlineIntern(Vec3d start, Vec3d dimensions, MatrixStack stack, BufferBuilder buffer) {
-        Camera c = Atomic.client.gameRenderer.getCamera();
+        Camera c = DiamondGen.client.gameRenderer.getCamera();
         Vec3d camPos = c.getPos();
         start = start.subtract(camPos);
         Vec3d end = start.add(dimensions);
@@ -160,7 +151,7 @@ public static void renderOutlineInternNoTranslate(Vec3d start, Vec3d dimensions,
         float green = color.getGreen() / 255f;
         float blue = color.getBlue() / 255f;
         float alpha = color.getAlpha() / 255f;
-        Camera c = Atomic.client.gameRenderer.getCamera();
+        Camera c = DiamondGen.client.gameRenderer.getCamera();
         Vec3d camPos = c.getPos();
         start = start.subtract(camPos);
         Vec3d end = start.add(dimensions);
@@ -221,7 +212,7 @@ public static void renderOutlineInternNoTranslate(Vec3d start, Vec3d dimensions,
         float green = color.getGreen() / 255f;
         float blue = color.getBlue() / 255f;
         float alpha = color.getAlpha() / 255f;
-        Camera c = Atomic.client.gameRenderer.getCamera();
+        Camera c = DiamondGen.client.gameRenderer.getCamera();
         Vec3d camPos = c.getPos();
         start = start.subtract(camPos);
         end = end.subtract(camPos);
@@ -277,9 +268,9 @@ public static void renderOutlineInternNoTranslate(Vec3d start, Vec3d dimensions,
 
     public static Vec3d getCrosshairVector() {
 
-        Camera camera = Atomic.client.gameRenderer.getCamera();
+        Camera camera = DiamondGen.client.gameRenderer.getCamera();
 
-        ClientPlayerEntity player = Atomic.client.player;
+        ClientPlayerEntity player = DiamondGen.client.player;
 
         float f = 0.017453292F;
         float pi = (float) Math.PI;
