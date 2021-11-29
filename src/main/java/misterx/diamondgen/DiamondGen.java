@@ -23,7 +23,7 @@ public class DiamondGen implements ModInitializer {
     @Override
     public void onInitialize() {
         clear(0);
-        RenderQueue.get().add("hand", RenderMain.get()::renderFinders);
+        
     }
 
     public static void clear(long seed) {
