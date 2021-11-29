@@ -26,7 +26,7 @@ public class DiamondGen implements ModInitializer {
         RenderQueue.get().add("hand", RenderMain.get()::renderFinders);
     }
 
-    public void clear(long seed) {
+    public static void clear(long seed) {
         gen = new OreSim(seed);
         if (client.getInstance().player == null)
             return;
