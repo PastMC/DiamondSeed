@@ -3,7 +3,6 @@ package misterx.diamondgen.render;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import misterx.diamondgen.DiamondGen;
-import misterx.diamondgen.SimOreGen;
 import net.minecraft.client.util.math.MatrixStack;
 
 
@@ -23,7 +22,6 @@ public class RenderMain {
 
         //Makes it render through blocks.
         GlStateManager.disableDepthTest();
-        DiamondGen.gen.simOreGen.render();
 
         RenderSystem.popMatrix();
     }
