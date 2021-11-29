@@ -4,7 +4,7 @@ import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
 
-public class Cuboid extends Renderer {
+public class Cuboid extends Rendererv2 {
 
     public BlockPos start;
     public Vec3i size;
