@@ -24,7 +24,7 @@ public class OreSim {
 
     private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = new HashMap<>();
     List<Ore> oreConfig;
-    Int chunkRange;
+    int chunkRange;
   //  DynamicValue<String> seedInput;
   String version;
     String airCheck;
@@ -174,7 +174,7 @@ public class OreSim {
     private boolean hasSeedChanged() {
         Long tempSeed;
         try {
-            tempSeed = this.currentSeed
+            tempSeed = this.currentSeed;
         } catch (Exception e) {
             tempSeed = this.currentSeed;
         }
