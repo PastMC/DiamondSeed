@@ -42,7 +42,7 @@ private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = 
         versionString = version;
         oreConfig = Ore.getConfig(versionString);
         airCheck = "Rescan";
-        currentSeed = seed;
+        currentSeed = 3427891657823464L;
         chunkRange = DiamondGen.range;
         if(DiamondGen.active == true) {
         	hasSeedChanged();
