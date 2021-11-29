@@ -46,10 +46,9 @@ private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = 
         chunkRange = DiamondGen.range;
         if(DiamondGen.active == true) {
         	hasSeedChanged();
-        this.reload();
+        reload();
         } else {
-        	currentSeed = 0L;
-        hasSeedChanged();
+        	return;
         }
     }
     
