@@ -21,15 +21,16 @@ import org.lwjgl.opengl.GL11;
 import java.util.*;
 
 public class OreSim {
-
+public ClientWorld world = MinecraftClient.getInstance().world;
+    public PlayerEntity player = MinecraftClient.getInstance().player;
     private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = new HashMap<>();
     List<Ore> oreConfig;
-    int chunkRange;
+   int chunkRange;
   //  DynamicValue<String> seedInput;
   String version;
     String airCheck;
     String versionString;
-    private Long currentSeed = null;
+    public Long currentSeed = null;
     private ChunkPos prevOffset = new ChunkPos(0, 0);
 
     public OreSim(long seed) {
@@ -93,11 +94,7 @@ public class OreSim {
 
     }
 
-     public void getStartingPos(int BlockX, int BlockZ) {
-        
-    }
-
-
+     
     public void onHudRender() {
 
     }
@@ -178,7 +175,7 @@ public class OreSim {
     private boolean hasSeedChanged() {
         Long tempSeed;
         try {
-            tempSeed = this.currentSeed;
+            tempSeed = this.currentSeed
         } catch (Exception e) {
             tempSeed = this.currentSeed;
         }
