@@ -23,6 +23,7 @@ public class ActiveCommand extends ClientCommand{
 
     private static int setActive(boolean active) {
         DiamondGen.active = active;
+DiamondGen.gen.hasSeedChanged();
         System.out.println("DiamondSim is now: " + active);
         return 0;
     }
