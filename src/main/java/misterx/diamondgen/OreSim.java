@@ -17,7 +17,10 @@ import net.minecraft.world.chunk.ChunkStatus;
 import net.minecraft.world.gen.ChunkRandom;
 import org.apache.logging.log4j.Level;
 import org.lwjgl.opengl.GL11;
-
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
 import java.util.*;
 
 public class OreSim {
