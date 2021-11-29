@@ -24,15 +24,17 @@ public class OreSim {
 
     private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = new HashMap<>();
     List<Ore> oreConfig;
-    int chunkRange;
+    Int chunkRange;
   //  DynamicValue<String> seedInput;
+  String version;
     String airCheck;
     String versionString;
     private Long worldSeed = null;
     private ChunkPos prevOffset = new ChunkPos(0, 0);
 
     public OreSim(long seed) {
-        versionString = DiamondGen.ver;
+        version = DiamondGen.ver;
+        versionString = version;
         oreConfig = Ore.getConfig(versionString);
         airCheck = "Rescan";
         worldSeed = seed;
@@ -71,14 +73,14 @@ public class OreSim {
         chunkRange = range;
     }*/
 
-    @Override
+     
     public void onWorldRender(MatrixStack ms) {
         if (DiamondGen.client.player == null) return;
         if (worldSeed != null) {
             int chunkX = DiamondGen.client.player.getChunkPos().x;
             int chunkZ = DiamondGen.client.player.getChunkPos().z;
 
-            int rangeVal = chunkRange.getValue().intValue();
+            int rangeVal = chunkRange;
             for (int range = 0; range <= rangeVal; range++) {
                 for (int x = -range + chunkX; x <= range + chunkX; x++) {
                     renderChunk(x, chunkZ + range - rangeVal, ms);
@@ -91,7 +93,7 @@ public class OreSim {
 
     }
 
-    @Override
+     
     public void onHudRender() {
 
     }
@@ -101,7 +103,7 @@ public class OreSim {
 
         if (chunkRenderers.containsKey(chunkKey)) {
             for (Ore ore : oreConfig) {
-                if (ore.enabled.getValue()) {
+                if (ore.enabled) {
                     if (!chunkRenderers.get(chunkKey).containsKey(ore.type)) continue;
                     BufferBuilder buffer = Renderer.renderPrepare(ore.color);
                     for (Vec3d pos : chunkRenderers.get(chunkKey).get(ore.type)) {
@@ -115,7 +117,7 @@ public class OreSim {
         }
     }
 
-    @Override
+     
     public void tick() {
         if (hasSeedChanged() || hasVersionChanged()) {
             loadVisibleChunks();
@@ -153,18 +155,18 @@ public class OreSim {
         }
     }
 
-    @Override
+     
     public void enable() {
         hasSeedChanged();
         reload();
     }
 
-    @Override
+     
     public void disable() {
 
     }
 
-    @Override
+     
     public String getContext() {
         return null;
     }
@@ -172,9 +174,9 @@ public class OreSim {
     private boolean hasSeedChanged() {
         Long tempSeed;
         try {
-            tempSeed = Long.parseLong(seedInput.getValue());
+            tempSeed = this.worldSeed
         } catch (Exception e) {
-            tempSeed = (long) seedInput.getValue().hashCode();
+            tempSeed = this.worldSeed;
         }
         if (tempSeed != 69420 && !tempSeed.equals(this.worldSeed)) {
             this.worldSeed = tempSeed;
@@ -185,10 +187,9 @@ public class OreSim {
     }
 
     private boolean hasVersionChanged() {
-        if (!versionString.equals(version.getValue())) {
-            versionString = version.getValue();
+        if (!versionString.equals(version)) {
+            versionString = version;
             this.oreConfig = Ore.getConfig(versionString);
-            this.config.getAll().removeIf(dynamicValue -> dynamicValue instanceof BooleanValue);
             //update ores in gui. fix this not being called when module is off
             if (ClickGUI.INSTANCE != null)
                 ClickGUI.INSTANCE.showModuleConfig(this);
