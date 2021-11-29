@@ -175,7 +175,7 @@ public ClientWorld world = MinecraftClient.getInstance().world;
     private boolean hasSeedChanged() {
         Long tempSeed;
         try {
-            tempSeed = this.currentSeed
+            tempSeed = this.currentSeed;
         } catch (Exception e) {
             tempSeed = this.currentSeed;
         }
