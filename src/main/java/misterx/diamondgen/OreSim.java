@@ -27,7 +27,7 @@ public class OreSim {
 public ClientWorld world = MinecraftClient.getInstance().world;
     public PlayerEntity player = MinecraftClient.getInstance().player;
 private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = new HashMap<>();
-    private static final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderersv = new HashMap<>();
+    
     List<Ore> oreConfig;
    int chunkRange;
   //  DynamicValue<String> seedInput;
@@ -219,23 +219,11 @@ private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = 
         }
     }
 
-private static void loadVisibleChunkks() {
-        int renderdistance = MinecraftClient.getInstance().options.viewDistance;
 
-        if (DiamondGen.client.player == null) return;
-        int playerChunkX = DiamondGen.client.player.getChunkPos().x;
-        int playerChunkZ = DiamondGen.client.player.getChunkPos().z;
 
-        for (int i = playerChunkX - renderdistance; i < playerChunkX + renderdistance; i++) {
-            for (int j = playerChunkZ - renderdistance; j < playerChunkZ + renderdistance; j++) {
-                doMathOnChunk(i, j);
-            }
-        }
-    }
-
-    public static void reload() {
-        this.chunkRenderersv.clear();
-        this.loadVisibleChunkks();
+    public void reload() {
+        chunkRenderers.clear();
+        loadVisibleChunks();
     }
 
     public void doMathOnChunk(int chunkX, int chunkZ) {
