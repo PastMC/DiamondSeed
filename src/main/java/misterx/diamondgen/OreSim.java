@@ -26,7 +26,8 @@ import java.util.*;
 public class OreSim {
 public ClientWorld world = MinecraftClient.getInstance().world;
     public PlayerEntity player = MinecraftClient.getInstance().player;
-    private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = new HashMap<>();
+private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = new HashMap<>();
+    private static final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderersv = new HashMap<>();
     List<Ore> oreConfig;
    int chunkRange;
   //  DynamicValue<String> seedInput;
@@ -77,7 +78,10 @@ public ClientWorld world = MinecraftClient.getInstance().world;
         chunkRange = range;
     }*/
 
-     
+     public void getStartingPos(int BlockX, int BlockZ) {
+        
+    }
+
     public void onWorldRender(MatrixStack ms) {
         if (DiamondGen.client.player == null) return;
         if (currentSeed != null) {
