@@ -45,7 +45,7 @@ public ClientWorld world = MinecraftClient.getInstance().world;
         chunkRange = DiamondGen.range;
         if(DiamondGen.active == true) {
         	hasSeedChanged();
-        reload();
+        this.reload();
         } else {
         	currentSeed = 0L;
         hasSeedChanged();
@@ -162,7 +162,7 @@ public ClientWorld world = MinecraftClient.getInstance().world;
      
     public void enable() {
         hasSeedChanged();
-        reload();
+        this.reload();
     }
 
      
@@ -215,7 +215,7 @@ public ClientWorld world = MinecraftClient.getInstance().world;
         }
     }
 
-    public void reload() {
+    public static void reload() {
         chunkRenderers.clear();
         loadVisibleChunks();
     }
