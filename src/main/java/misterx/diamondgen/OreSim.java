@@ -219,9 +219,23 @@ private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = 
         }
     }
 
+private static void loadVisibleChunkks() {
+        int renderdistance = MinecraftClient.getInstance().options.viewDistance;
+
+        if (DiamondGen.client.player == null) return;
+        int playerChunkX = DiamondGen.client.player.getChunkPos().x;
+        int playerChunkZ = DiamondGen.client.player.getChunkPos().z;
+
+        for (int i = playerChunkX - renderdistance; i < playerChunkX + renderdistance; i++) {
+            for (int j = playerChunkZ - renderdistance; j < playerChunkZ + renderdistance; j++) {
+                doMathOnChunk(i, j);
+            }
+        }
+    }
+
     public static void reload() {
-        this.chunkRenderers.clear();
-        this.loadVisibleChunks();
+        this.chunkRenderersv.clear();
+        this.loadVisibleChunkks();
     }
 
     public void doMathOnChunk(int chunkX, int chunkZ) {
