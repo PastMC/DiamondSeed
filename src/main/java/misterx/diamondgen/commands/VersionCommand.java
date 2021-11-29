@@ -18,17 +18,18 @@ public class VersionCommand extends ClientCommand{
 
     @Override
     public void build(LiteralArgumentBuilder<ServerCommandSource> builder) {
-        builder.then(literal("1.17").executes(context -> setVersion("1.17")))
-                .then(literal("1.16").executes(context -> setVersion("1.16")));
+        builder.then(literal("1.17.1").executes(context -> setVersion("1.17")))
+                .then(literal("1.17.0").executes(context -> setVersion("1.16")));
     }
 
     public int setVersion(String ver) {
-        if(ver.equals("1.17")) {
-            DiamondGen.ver = "1.17";
+        if(ver.equals("1.17.1")) {
+            DiamondGen.ver = "1.17.1";
         }else {
-            DiamondGen.ver = "1.16";
+            DiamondGen.ver = "1.17.0";
         }
         DiamondGen.clear(DiamondGen.gen.currentSeed);
+DiamondGen.gen.hasVersionChanged();
         return 0;
     }
 }
