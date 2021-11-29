@@ -17,11 +17,15 @@ import net.minecraft.world.chunk.ChunkStatus;
 import net.minecraft.world.gen.ChunkRandom;
 import org.apache.logging.log4j.Level;
 import org.lwjgl.opengl.GL11;
-
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.world.ClientWorld;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.math.BlockPos;
 import java.util.*;
 
 public class OreSim {
-
+public ClientWorld world = MinecraftClient.getInstance().world;
+    public PlayerEntity player = MinecraftClient.getInstance().player;
     private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = new HashMap<>();
     List<Ore> oreConfig;
     int chunkRange;
