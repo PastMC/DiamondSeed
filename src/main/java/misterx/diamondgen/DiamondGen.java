@@ -32,4 +32,8 @@ public class DiamondGen implements ModInitializer {
             return;
         OreSim.reload();
     }
+
+public static void log(String log){
+    	
+    }
 }
