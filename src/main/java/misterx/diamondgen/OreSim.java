@@ -174,7 +174,7 @@ public class OreSim {
     private boolean hasSeedChanged() {
         Long tempSeed;
         try {
-            tempSeed = this.worldSeed
+            tempSeed = this.worldSeed;
         } catch (Exception e) {
             tempSeed = this.worldSeed;
         }
