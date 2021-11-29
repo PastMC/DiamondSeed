@@ -24,7 +24,7 @@ public class OreSim {
 
     private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = new HashMap<>();
     List<Ore> oreConfig;
-    Int chunkRange;
+    int chunkRange;
   //  DynamicValue<String> seedInput;
     String airCheck;
     String versionString;
