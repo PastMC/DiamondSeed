@@ -93,7 +93,11 @@ public class OreSim {
 
     }
 
-     
+     public void getStartingPos(int BlockX, int BlockZ) {
+        
+    }
+
+
     public void onHudRender() {
 
     }
