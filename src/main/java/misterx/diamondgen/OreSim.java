@@ -216,8 +216,8 @@ public ClientWorld world = MinecraftClient.getInstance().world;
     }
 
     public static void reload() {
-        chunkRenderers.clear();
-        loadVisibleChunks();
+        this.chunkRenderers.clear();
+        this.loadVisibleChunks();
     }
 
     public void doMathOnChunk(int chunkX, int chunkZ) {
