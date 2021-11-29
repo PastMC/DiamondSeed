@@ -5,7 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
 public class DiamondGen implements ModInitializer {
     public static int range = 100;
-    public static boolean active = true;
+    public static boolean active = false;
     public static String ver = "1.17.0";
     public static MinecraftClient client = MinecraftClient.getInstance();
     public static boolean isOpaque() {
