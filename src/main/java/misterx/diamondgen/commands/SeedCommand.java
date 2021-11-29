@@ -22,6 +22,7 @@ public class SeedCommand extends ClientCommand {
 
     private static int setSeed(long seed) {
         DiamondGen.clear(seed);
+         DiamondGen.gen.hasSeedChanged();
         return 0;
     }
 }
