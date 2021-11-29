@@ -7,7 +7,7 @@ import net.minecraft.client.render.VertexFormats;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
-public class Line extends Renderer {
+public class Line extends Rendererv2 {
 
     public Vec3d start;
     public Vec3d end;
