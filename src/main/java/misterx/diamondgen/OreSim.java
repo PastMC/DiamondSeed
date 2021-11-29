@@ -178,7 +178,7 @@ private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = 
         return null;
     }
 
-    private boolean hasSeedChanged() {
+    public boolean hasSeedChanged() {
         Long tempSeed;
         try {
             tempSeed = this.currentSeed;
@@ -193,7 +193,7 @@ private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = 
         return false;
     }
 
-    private boolean hasVersionChanged() {
+    public boolean hasVersionChanged() {
         if (!versionString.equals(version)) {
             versionString = version;
             this.oreConfig = Ore.getConfig(versionString);
