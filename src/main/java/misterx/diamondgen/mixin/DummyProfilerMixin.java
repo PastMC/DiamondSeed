@@ -1,6 +1,6 @@
 package misterx.diamondgen.mixin;
 
-import misterx.diamondgen.render.RenderQueue;
+
 import net.minecraft.util.profiler.DummyProfiler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,7 +12,7 @@ public abstract class DummyProfilerMixin {
 
     @Inject(method = "swap(Ljava/lang/String;)V", at = @At("HEAD"))
     private void swap(String type, CallbackInfo ci) {
-        RenderQueue.get().onRender(type);
+        
     }
 
 }
