@@ -1,7 +1,6 @@
 package misterx.diamondgen;
 
-import misterx.diamondgen.render.RenderMain;
-import misterx.diamondgen.render.RenderQueue;
+
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
 public class DiamondGen implements ModInitializer {
