@@ -17,23 +17,19 @@ import net.minecraft.world.chunk.ChunkStatus;
 import net.minecraft.world.gen.ChunkRandom;
 import org.apache.logging.log4j.Level;
 import org.lwjgl.opengl.GL11;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.math.BlockPos;
+
 import java.util.*;
 
 public class OreSim {
-public ClientWorld world = MinecraftClient.getInstance().world;
-    public PlayerEntity player = MinecraftClient.getInstance().player;
+
     private final HashMap<Long, HashMap<Ore.Type, HashSet<Vec3d>>> chunkRenderers = new HashMap<>();
     List<Ore> oreConfig;
-    int chunkRange;
+    Int chunkRange;
   //  DynamicValue<String> seedInput;
   String version;
     String airCheck;
     String versionString;
-    private Long worldSeed = null;
+    private Long currentSeed = null;
     private ChunkPos prevOffset = new ChunkPos(0, 0);
 
     public OreSim(long seed) {
@@ -41,13 +37,13 @@ public ClientWorld world = MinecraftClient.getInstance().world;
         versionString = version;
         oreConfig = Ore.getConfig(versionString);
         airCheck = "Rescan";
-        worldSeed = seed;
+        currentSeed = seed;
         chunkRange = DiamondGen.range;
         if(DiamondGen.active == true) {
         	hasSeedChanged();
         reload();
         } else {
-        	worldSeed = 0L;
+        	currentSeed = 0L;
         hasSeedChanged();
         }
     }
@@ -70,7 +66,7 @@ public ClientWorld world = MinecraftClient.getInstance().world;
     
     public OreSim(long seed) {
         airCheck = "Rescan";
-        worldSeed = seed;
+        currentSeed = seed;
     }
     public OreSim(int range) {
         airCheck = "Rescan";
@@ -80,7 +76,7 @@ public ClientWorld world = MinecraftClient.getInstance().world;
      
     public void onWorldRender(MatrixStack ms) {
         if (DiamondGen.client.player == null) return;
-        if (worldSeed != null) {
+        if (currentSeed != null) {
             int chunkX = DiamondGen.client.player.getChunkPos().x;
             int chunkZ = DiamondGen.client.player.getChunkPos().z;
 
@@ -178,12 +174,12 @@ public ClientWorld world = MinecraftClient.getInstance().world;
     private boolean hasSeedChanged() {
         Long tempSeed;
         try {
-            tempSeed = this.worldSeed;
+            tempSeed = this.currentSeed
         } catch (Exception e) {
-            tempSeed = this.worldSeed;
+            tempSeed = this.currentSeed;
         }
-        if (tempSeed != 69420 && !tempSeed.equals(this.worldSeed)) {
-            this.worldSeed = tempSeed;
+        if (tempSeed != 69420 && !tempSeed.equals(this.currentSeed)) {
+            this.currentSeed = tempSeed;
             chunkRenderers.clear();
             return true;
         }
@@ -195,8 +191,6 @@ public ClientWorld world = MinecraftClient.getInstance().world;
             versionString = version;
             this.oreConfig = Ore.getConfig(versionString);
             //update ores in gui. fix this not being called when module is off
-            if (ClickGUI.INSTANCE != null)
-                ClickGUI.INSTANCE.showModuleConfig(this);
             chunkRenderers.clear();
             return true;
         }
@@ -223,7 +217,7 @@ public ClientWorld world = MinecraftClient.getInstance().world;
     }
 
     public void doMathOnChunk(int chunkX, int chunkZ) {
-        if (worldSeed == null) {
+        if (currentSeed == null) {
             this.disable();
             return;
         }
@@ -242,13 +236,13 @@ public ClientWorld world = MinecraftClient.getInstance().world;
         ChunkRandom random = new ChunkRandom();
         HashMap<Ore.Type, HashSet<Vec3d>> h = new HashMap<>();
 
-        long populationSeed = random.setPopulationSeed(worldSeed, chunkX, chunkZ);
+        long populationSeed = random.setPopulationSeed(currentSeed, chunkX, chunkZ);
 
         Identifier id = world.getRegistryManager().get(Registry.BIOME_KEY)
                 .getId(world.getBiomeAccess().getBiomeForNoiseGen(new ChunkPos(chunkX >> 4, chunkZ >> 4)));
         if (id == null) {
        //     Client.notifyUser("Something went wrong, you may have some mods that mess with world generation");
-            this.setEnabled(false);
+           
             return;
         }
         String biomeName = id.getPath();
