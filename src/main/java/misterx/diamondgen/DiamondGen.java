@@ -29,7 +29,7 @@ public class DiamondGen implements ModInitializer {
         gen = new OreSim(seed);
         if (client.getInstance().player == null)
             return;
-        Utils.reload();
+        Util.reload();
     }
     public static void log(String log){
     	
