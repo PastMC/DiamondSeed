@@ -21,13 +21,14 @@ public class Util {
         return 1001;
     }
     public static void reload() {
+DiamondGen.gen.reload();
         int renderdistance = client.options.viewDistance;
 
         int playerChunkX = (int) (Math.round(client.player.getX()) >> 4);
         int playerChunkZ = (int) (Math.round(client.player.getZ()) >> 4);
         for(int i = playerChunkX - renderdistance;i < playerChunkX + renderdistance; i++) {
             for(int j = playerChunkZ - renderdistance;j < playerChunkZ + renderdistance; j++) {
-               // DiamondGen.gen.getStartingPos(i << 4,j<<4);
+                DiamondGen.gen.doMathOnChunk(i, j);
             }
         }
     }
